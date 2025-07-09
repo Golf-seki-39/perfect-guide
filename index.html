@@ -11,11 +11,15 @@
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
+            background-color: #f1f5f9; /* slate-100 */
         }
         .tab-link {
             transition: all 0.3s;
             border-bottom: 3px solid transparent;
+            padding: 1rem;
+            font-weight: 500;
+            color: #64748b; /* slate-500 */
+            cursor: pointer;
         }
         .tab-link.active, .tab-link:hover {
             border-bottom-color: #16a34a; /* green-600 */
@@ -40,6 +44,17 @@
             margin-right: 12px;
             color: #16a34a;
         }
+        .glow-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(22, 163, 74, 0), 0 0 10px rgba(22, 163, 74, 0);
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 15px rgba(22, 163, 74, 0.6), 0 0 25px rgba(22, 163, 74, 0.4);
+            transform: translateY(-2px);
+        }
+        #report-output {
+            transition: all 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body class="text-slate-700">
@@ -53,18 +68,18 @@
 
         <nav class="mb-8 border-b border-slate-200">
             <ul class="flex justify-center flex-wrap -mb-px">
-                <li><a href="#welcome" class="tab-link inline-block p-4 font-medium">はじめに</a></li>
-                <li><a href="#hp-check" class="tab-link inline-block p-4 font-medium">HPチェックリスト</a></li>
-                <li><a href="#skill-check" class="tab-link inline-block p-4 font-medium">習熟度別チェックシート</a></li>
-                <li><a href="#my-report" class="tab-link inline-block p-4 font-medium">マイ練習場カルテ</a></li>
+                <li><a data-tab="welcome" class="tab-link active">はじめに</a></li>
+                <li><a data-tab="hp-check" class="tab-link">HPチェック</a></li>
+                <li><a data-tab="skill-check" class="tab-link">習熟度別シート</a></li>
+                <li><a data-tab="my-report" class="tab-link">マイカルテ診断</a></li>
             </ul>
         </nav>
 
         <main>
-            <section id="welcome" class="content-section">
+            <section id="welcome" class="content-section active">
                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-800 mb-4">ようこそ、賢いゴルファーの練習場選びへ！</h2>
-                    <p class="mb-4">このツールは、私のnote記事シリーズ「初心者必見！ゴルフ練習場選び完全ガイド」を読んでくださったあなたのための、特別な特典です。</p>
+                    <p class="mb-4">このツールは、<strong>関＠初心者向けゴルフ施設レビュアー</strong>のnote記事シリーズ「初心者必見！ゴルフ練習場選び完全ガイド」を読んでくださったあなたのための、特別な特典です。</p>
                     <p class="mb-4">練習場選びは、あなたのゴルフライフを大きく左右する重要な選択。しかし、情報が多すぎて「どこを、どう見ればいいの？」と迷ってしまいますよね。</p>
                     <p>このガイドを使えば、</p>
                     <ul class="list-disc list-inside my-4 space-y-2">
@@ -156,55 +171,60 @@
             <section id="my-report" class="content-section">
                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-800 mb-4">あなただけの「練習場選びカルテ」を作成しよう！</h2>
-                    <p class="mb-6 text-slate-600">下の質問に答えて、あなたにとって「理想の練習場」の条件を明確にしてみましょう。最後に生成される「あなたの練習場カルテ」をスクリーンショットすれば、今後の練習場選びの強力な「羅針盤」になります！</p>
+                    <p class="mb-6 text-slate-600">下の3つの質問に答えて、あなたにとって「理想の練習場」の条件を明確にしてみましょう。最後に生成される「あなたの練習場カルテ」をスクリーンショットすれば、今後の練習場選びの強力な「羅針盤」になります！</p>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-8">
                         <div>
-                            <label for="goal" class="block mb-2 text-sm font-medium text-slate-900">1. 今のあなたの「一番の練習目的」は何ですか？</label>
-                            <select id="goal" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
-                                <option selected>選択してください</option>
-                                <option value="とにかくたくさん打ちたい（スイング固め）">とにかくたくさん打ちたい（スイング固め）</option>
-                                <option value="パターをとことん練習したい">パターをとことん練習したい</option>
-                                <option value="アプローチやバンカーを克服したい">アプローチやバンカーを克服したい</option>
-                                <option value="データを見ながら効率よく練習したい">データを見ながら効率よく練習したい</option>
-                                <option value="いろいろなクラブを試したい">いろいろなクラブを試したい</option>
+                            <label for="goal" class="block mb-2 text-lg font-medium text-slate-900">
+                                <span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q1</span>今のあなたの「一番の練習目的」は何ですか？
+                            </label>
+                            <select id="goal" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3">
+                                <option selected value="">選択してください</option>
+                                <option value="data">データを見ながら効率よく練習したい</option>
+                                <option value="approach">アプローチやバンカーをとことん練習したい</option>
+                                <option value="putter">パターを本気で上達させたい</option>
+                                <option value="swing">とにかくたくさん打ち込みたい（スイング固め）</option>
+                                <option value="trial">いろいろなクラブを試したい</option>
                             </select>
                         </div>
                         <div>
-                            <label for="budget" class="block mb-2 text-sm font-medium text-slate-900">2. 練習1回あたりの「理想の予算」はどれくらいですか？</label>
-                            <select id="budget" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
-                                <option selected>選択してください</option>
-                                <option value="コスト最優先！できるだけ安く！">コスト最優先！できるだけ安く！</option>
-                                <option value="平均的な価格帯（1,500円～2,500円くらい）">平均的な価格帯（1,500円～2,500円くらい）</option>
-                                <option value="質のためなら、多少高くても気にしない">質のためなら、多少高くても気にしない</option>
+                            <label for="budget" class="block mb-2 text-lg font-medium text-slate-900">
+                                 <span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q2</span>練習1回あたりの「理想の予算感」は？
+                            </label>
+                            <select id="budget" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3">
+                                <option selected value="">選択してください</option>
+                                <option value="cost">コスト最優先！できるだけ安く！</option>
+                                <option value="balance">安さも質も！コスパ重視</option>
+                                <option value="quality">質のためなら、多少高くても気にしない</option>
                             </select>
                         </div>
                         <div>
-                            <label for="priority" class="block mb-2 text-sm font-medium text-slate-900">3. 練習場選びで「絶対に譲れない」ポイントは何ですか？</label>
-                            <select id="priority" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
-                                <option selected>選択してください</option>
-                                <option value="家からの近さ（通いやすさ）">家からの近さ（通いやすさ）</option>
-                                <option value="料金の安さ（コスパ）">料金の安さ（コスパ）</option>
-                                <option value="設備の綺麗さ・快適さ">設備の綺麗さ・快適さ</option>
-                                <option value="アットホームな雰囲気・人との繋がり">アットホームな雰囲気・人との繋がり</option>
-                                <option value="周りを気にせず集中できる環境">周りを気にせず集中できる環境</option>
+                            <label for="priority" class="block mb-2 text-lg font-medium text-slate-900">
+                                <span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q3</span>練習場選びで「絶対に譲れない」雰囲気は？
+                            </label>
+                            <select id="priority" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3">
+                                <option selected value="">選択してください</option>
+                                <option value="focus">自分のペースで黙々と集中したい</option>
+                                <option value="community">アットホームな雰囲気・人との繋がり</option>
+                                <option value="comfort">設備の綺麗さ・快適さ</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="mt-8 text-center">
-                        <button id="generate-report" type="button" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5">カルテを生成する</button>
+                    <div class="mt-10 text-center">
+                        <button id="generate-report" type="button" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-lg px-8 py-4 glow-button">
+                            カルテを生成する！
+                        </button>
                     </div>
 
-                    <div id="report-output" class="mt-8 bg-amber-50 p-6 rounded-lg border-2 border-dashed border-amber-300" style="display: none;">
-                        <h3 class="text-xl font-bold text-amber-800 mb-4 text-center">📝 あなたの練習場選びカルテ</h3>
-                        <div class="space-y-3 text-slate-700">
-                           <p><strong>【あなたの練習目的】</strong><br><span id="report-goal" class="font-semibold"></span></p>
-                           <p><strong>【あなたの予算感】</strong><br><span id="report-budget" class="font-semibold"></span></p>
-                           <p><strong>【あなたが重視するポイント】</strong><br><span id="report-priority" class="font-semibold"></span></p>
+                    <div id="report-output" class="mt-10 bg-amber-50 p-6 rounded-lg border-2 border-dashed border-amber-300" style="display: none;">
+                        <h3 class="text-2xl font-bold text-amber-800 mb-4 text-center">📝 あなただけの練習場選びカルテ</h3>
+                        <div class="space-y-4 text-slate-800">
+                           <p><strong>【あなたの理想】</strong><br>「<span id="report-goal" class="font-semibold text-amber-900"></span>」を目標に、「<span id="report-budget" class="font-semibold text-amber-900"></span>」を重視しつつ、「<span id="report-priority" class="font-semibold text-amber-900"></span>」環境で練習したい。</p>
                            <div class="mt-4 pt-4 border-t border-amber-200">
-                               <h4 class="font-bold text-amber-900">診断結果：あなたにおすすめの練習場タイプは…</h4>
-                               <p id="report-recommendation" class="mt-2"></p>
+                               <h4 class="font-bold text-lg text-amber-900">診断結果：あなたにピッタリの練習場はここだ！</h4>
+                               <div id="report-recommendation" class="mt-2 text-base"></div>
+                               <p class="text-xs text-slate-500 mt-4">※この診断は、関の体験に基づいた**滋賀県**の練習場を参考にしています。</p>
                            </div>
                         </div>
                     </div>
@@ -212,30 +232,42 @@
             </section>
 
         </main>
+        <footer class="text-center mt-8 text-xs text-slate-400">
+            <p>Created by <a href="https://note.com/seki_golf_39" target="_blank" class="underline hover:text-green-700"><strong>関＠初心者向けゴルフ施設レビュアー</strong></a> & Gemini</p>
+        </footer>
     </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    // データベース（note記事URLも更新）
+    const db = {
+        ksp_hikone: { name: "KSP彦根", url: "https://note.com/seki_golf_39/n/nb5ea1ecefd55" },
+        '365_hikone': { name: "365ゴルフクラブ 彦根", url: null }, // URL is pending
+        ksp_hopegaoka: { name: "KSP希望ヶ丘", url: null }, // URL is pending
+        riverside: { name: "リバーサイドジャンボゴルフ", url: "https://note.com/seki_golf_39/n/n08dd06e73210" },
+        sakura: { name: "さくらゴルフ倶楽部", url: "https://note.com/seki_golf_39/n/n759ba0e6cda6" },
+        '365_nagahama': { name: "365ゴルフクラブ ながはま", url: "https://note.com/seki_golf_39/n/n8352c6895ba7" },
+        greenpia: { name: "グリーンピア近江八幡ゴルフ", url: "https://note.com/seki_golf_39/n/nb7380ee3708a" }
+    };
+
     const tabLinks = document.querySelectorAll('.tab-link');
     const sections = document.querySelectorAll('.content-section');
 
     function updateView(hash) {
-        let activeHash = hash || window.location.hash || '#welcome';
-        if (activeHash.length <= 1) activeHash = '#welcome';
+        let activeHash = hash || window.location.hash.substring(1) || 'welcome';
+        if(activeHash.startsWith('#')) activeHash = activeHash.substring(1);
 
         tabLinks.forEach(link => {
-            if (link.getAttribute('href') === activeHash) {
+            link.classList.remove('active');
+            if (link.dataset.tab === activeHash) {
                 link.classList.add('active');
-            } else {
-                link.classList.remove('active');
             }
         });
 
         sections.forEach(section => {
-            if ('#' + section.id === activeHash) {
+            section.classList.remove('active');
+            if (section.id === activeHash) {
                 section.classList.add('active');
-            } else {
-                section.classList.remove('active');
             }
         });
     }
@@ -243,9 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
     tabLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const hash = e.target.getAttribute('href');
-            history.pushState(null, null, hash);
-            updateView(hash);
+            const tabName = e.target.dataset.tab;
+            history.pushState(null, null, '#' + tabName);
+            updateView(tabName);
         });
     });
 
@@ -259,37 +291,99 @@ document.addEventListener('DOMContentLoaded', () => {
             const budget = document.getElementById('budget').value;
             const priority = document.getElementById('priority').value;
 
-            if (goal === '選択してください' || budget === '選択してください' || priority === '選択してください') {
+            if (!goal || !budget || !priority) {
                 alert('すべての質問に答えてください！');
                 return;
             }
 
-            document.getElementById('report-goal').textContent = goal;
-            document.getElementById('report-budget').textContent = budget;
-            document.getElementById('report-priority').textContent = priority;
+            document.getElementById('report-goal').textContent = document.querySelector(`#goal option[value='${goal}']`).textContent;
+            document.getElementById('report-budget').textContent = document.querySelector(`#budget option[value='${budget}']`).textContent;
+            document.getElementById('report-priority').textContent = document.querySelector(`#priority option[value='${priority}']`).textContent;
 
-            let recommendation = "診断中...";
-            if (goal.includes('データ')) {
-                recommendation = "トップトレーサーなど、最新の弾道測定器が無料で使える練習場が最適です！あなたの練習効率は劇的に向上するでしょう。";
-            } else if (goal.includes('パター')) {
-                recommendation = "広くてリアルなパター練習グリーンが併設されている練習場を探しましょう。無料で使えるなら最高ですね！";
-            } else if (goal.includes('アプローチ')) {
-                 recommendation = "アプローチ練習場やバンカー練習場が充実している場所がおすすめです。様々なライから練習できると、スコアアップに直結します。";
-            } else if (budget.includes('コスト最優先')) {
-                recommendation = "打ち放題プランが安い、またはボール単価が低い練習場がベストです。会員制度や割引も賢く活用しましょう！";
-            } else if (priority.includes('雰囲気')) {
-                 recommendation = "スタッフが親切で、アットホームな雰囲気の練習場があなたに合っているようです。口コミなども参考にしてみましょう。";
-            } else {
-                recommendation = "料金と設備のバランスが良く、あなたが「心地よい」と感じる練習場が一番です。いくつかの候補を比較検討してみましょう！";
+            let result = null;
+            let finalReason = "";
+
+            // 関さんの診断ロジックを完全実装！
+            // Q1: データ
+            if (goal === 'data') {
+                if (budget === 'cost' && priority === 'focus') { result = db.ksp_hikone; finalReason = "理由：30分660円からのお得な打ち放題があり「コスト優先」に応えつつ、全打席トップトレーサー無料で「データ計測」が可能。各自が黙々と練習する雰囲気も「集中したい」あなたにピッタリです！"; }
+                else if (budget === 'cost' && priority === 'community') { result = db['365_hikone']; finalReason = "理由：「コスト優先」で「アットホーム」さを求めるならここ。店員さんも優しく、工房にはいつも多くの人が相談に訪れるなど、データ計測以外の人との繋がりも期待できます。"; }
+                else if (budget === 'cost' && priority === 'comfort') { result = [db['365_hikone'], db.ksp_hikone]; finalReason = "理由：安さも綺麗さもならこの2つ。365彦根はオープンしたてで綺麗、KSP彦根もレンジ周りは非常に清潔感があります。どちらもトップトレーサー完備です！"; }
+                else if (budget === 'balance' && priority === 'focus') { result = [db['365_nagahama'], db['365_hikone'], db.ksp_hikone]; finalReason = "理由：「コスパ」と「質」、そして「集中できる環境」を求めるならこの3つ。どの練習場も集中しやすく、料金と設備のバランスが最高レベルです。"; }
+                else if (budget === 'balance' && priority === 'community') { result = db['365_hikone']; finalReason = "理由：「コスパ」と「アットホームさ」のバランスが良いのがここ。最新のデータ計測を楽しみつつ、親切な店員さんや工房に集まる人たちとの交流も魅力です。"; }
+                else if (budget === 'balance' && priority === 'comfort') { result = [db['365_hikone'], db.ksp_hikone]; finalReason = "理由：安さと質の高さを両立し、かつ綺麗な環境で練習したいあなたへ。どちらも清潔感があり、トップトレーサーを快適に利用できます。"; }
+                else if (budget === 'quality' && priority === 'focus') { result = [db['365_nagahama'], db.ksp_hopegaoka]; finalReason = "理由：「質」を最優先するならこの2つ。365ながはまはショートコースも完備。KSP希望ヶ丘は料金が少し高めですが、その分、質の高い環境で黙々とデータと向き合えます。"; }
+                else if (budget === 'quality' && priority === 'community') { result = db['365_nagahama']; finalReason = "理由：「質」と「雰囲気」の両方を最高レベルで求めるならここ。最高の練習環境でスキルを磨きつつ、活気のある練習場で新しい出会いも期待できます。"; }
+                else if (budget === 'quality' && priority === 'comfort') { result = [db['365_nagahama'], db['365_hikone']]; finalReason = "理由：「質」と「快適さ」を極めるならこの2つ。365ながはまは全てが揃い、365彦根は有料の屋内パター練習場など、綺麗な環境で最高の練習ができます。"; }
+            }
+            // Q1: アプローチ
+            else if (goal === 'approach') {
+                if (budget === 'cost' && priority === 'focus') { result = db.greenpia; finalReason = "理由：「コスト最優先」でアプローチ練習ならここ。利用時間は短いですが、非常に安い料金で利用できます。平日など空いている時間なら集中できるはず。"; }
+                else if (budget === 'cost' && priority === 'community') { result = db.sakura; finalReason = "理由：安くてアットホームな雰囲気でアプローチ練習がしたいならここが一番！親切な店員さんや他の利用者との交流も魅力です。"; }
+                else if (budget === 'cost' && priority === 'comfort') { result = db.sakura; finalReason = "理由：料金の安さを考えると、ここのアプローチ練習場は十分に快適と言えるでしょう。金額と設備のバランスが良い選択です。"; }
+                else if (budget === 'balance' && priority === 'focus') { result = db.sakura; finalReason = "理由：「コスパ」と「質」を両立し、自分のペースで集中したいならここ。実践的なライから練習でき、上達に繋がります。"; }
+                else if (budget === 'balance' && priority === 'community') { result = db.sakura; finalReason = "理由：料金と設備のバランスが良く、かつアットホームな雰囲気でアプローチ練習がしたいなら、ここが最適解です！"; }
+                else if (budget === 'balance' && priority === 'comfort') { result = db.riverside; finalReason = "理由：「コスパ」も「快適さ」もならここ。年会費2,000円を払えば、300円で快適な会員限定アプローチ練習場が利用できます。"; }
+                else if (budget === 'quality' && priority === 'focus') { result = db.riverside; finalReason = "理由：「質」を求めるあなたには、会員しか入れないここのアプローチ練習場がおすすめ。人が少ない環境で最高の集中力を発揮できます。"; }
+                else if (budget === 'quality' && priority === 'community') { result = db.riverside; finalReason = "理由：ハイクオリティな会員限定アプローチ練習場がありつつ、休憩スペースでは他のゴルファーとも交流できる、バランスの取れた練習場です。"; }
+                else if (budget === 'quality' && priority === 'comfort') { result = db['365_nagahama']; finalReason = "理由：「質」と「快適さ」を最高レベルで求めるならここ。併設のショートコースでの実践的なアプローチ練習は、まさに最高の環境です。"; }
+            }
+            // Q1: パター
+            else if (goal === 'putter') {
+                if (budget === 'cost') { result = db.riverside; finalReason = "理由：「コスト最優先」でパターを練習したいなら、無料でこのクオリティのパター練習場を開放しているここが、まさに聖地です！"; }
+                else if (budget === 'balance' && priority === 'focus') { result = db.ksp_hopegaoka; finalReason = "理由：「コスパ」「質」「集中」を求めるならここ。レンジ利用者は、広くて質の良い屋内パター練習場が無料で使え、自分の練習に没頭できます。"; }
+                else if (budget === 'balance' && priority === 'community') { result = db.riverside; finalReason = "理由：「コスパ」と「アットホームさ」のバランスが最も良いのがここ。無料パター練習場でコストを抑えつつ、人の温かみも感じられます。"; }
+                else if (budget === 'balance' && priority === 'comfort') { result = db.ksp_hikone; finalReason = "理由：レンジ利用が前提ですが、トップトレーサーを楽しんだ後に、無料で使える綺麗なパター練習マットで調整、という流れは非常に「コスパ」が高いです。"; }
+                else if (budget === 'quality' && priority === 'focus') { result = db['365_nagahama']; finalReason = "理由：「質」を最優先するなら、ここのショートコースのグリーンで実践的なパッティングを行うのが最強の選択肢です。"; }
+                else if (budget === 'quality' && priority === 'community') { result = db['365_nagahama']; finalReason = "理由：「質」と「雰囲気」の両方を満たすならここ。最高の練習環境でスキルを磨きつつ、活気のある練習場で新しい出会いも期待できます。"; }
+                else if (budget === 'quality' && priority === 'comfort') { result = db['365_hikone']; finalReason = "理由：「質」と「快適さ」を極めるなら、ここの有料屋内パター練習場がベスト。天候に左右されず、綺麗なプライベート空間で最高の練習ができます。"; }
+            }
+             // Q1: 打ち込みたい
+            else if (goal === 'swing') {
+                if (budget === 'cost' && priority === 'focus') { result = db.greenpia; finalReason = "理由：「コスト最優先」で「集中したい」なら、割引を駆使すれば驚異的な安さでガンガン打ち込めます。平日など空いている時間を狙いましょう。"; }
+                else if (budget === 'cost' && priority === 'community') { result = db.sakura; finalReason = "理由：「コスト最優先」で「アットホーム」な雰囲気、特に女性ならここの打ち放題が圧倒的におすすめです！"; }
+                else if (budget === 'cost' && priority === 'comfort') { result = db['365_hikone']; finalReason = "理由：最安クラスではありませんが、オープンしたてで非常に綺麗な環境で、コストを抑えつつ気持ちよく打ち込みたいならここがベストです。"; }
+                else if (budget === 'balance' && priority === 'focus') { result = db.ksp_hikone; finalReason = "理由：安くて集中できる環境で打ち込みたいならここ。トップトレーサーでデータを見ながらの打ち込みは、ただ打つ以上の価値があります。"; }
+                else if (budget === 'balance' && priority === 'community') { result = db.sakura; finalReason = "理由：料金と雰囲気のバランスを考えるなら、やはりここ。人の繋がりを感じながら、楽しく打ち込めます。"; }
+                else if (budget === 'balance' && priority === 'comfort') { result = db['365_hikone']; finalReason = "理由：「コスパ」も「綺麗さ」も、ならここ。新しい施設で気持ちよく、そしてお得に打ち込めます。"; }
+                else if (budget === 'quality' && priority === 'focus') { result = db.ksp_hopegaoka; finalReason = "理由：「質」を重視して集中したいならここ。料金は高めですが、打席待ちもなく、黙々と自分のスイングと向き合える環境です。"; }
+                else if (budget === 'quality' && priority === 'community') { result = db['365_hikone']; finalReason = "理由：質の高い練習環境と、アットホームな雰囲気を両立したいあなたへ。親切な店員さんや工房に集まる人たちとの交流も魅力です。"; }
+                else if (budget === 'quality' && priority === 'comfort') { result = db['365_nagahama']; finalReason = "理由：最高の「質」と「快適さ」で打ち込みたいならここ。ショートコース、トップトレーサー、試打と、全てが揃っています。"; }
+            }
+            // Q1: クラブ試打
+            else if (goal === 'trial') {
+                if (budget === 'cost' || budget === 'balance' || budget === 'quality') { 
+                    result = db['365_nagahama']; 
+                    finalReason = "理由：クラブを試したいなら、ゴルフパートナー併設で**無料試打**ができるここが唯一無二の選択肢です！トップトレーサーのデータを見ながら、あなたの予算感や求める雰囲気に合わせて、最高の1本を見つけてください！";
+                }
             }
             
-            document.getElementById('report-recommendation').textContent = recommendation;
+            if (!result) {
+                result = { name: "あなたにピッタリの練習場、見つかります！", reason: "あなたのこだわり、素晴らしいですね！私のnote記事シリーズで紹介した様々な練習場の「選び方の軸」を参考に、ぜひあなただけの最高の練習環境を見つけてください！", url: null };
+            }
+            
+            let recommendationHTML = "";
+            if (Array.isArray(result)) {
+                recommendationHTML = `<strong class="text-xl text-red-600">${result.map(r => r.name).join(' または ')}</strong><br>${finalReason}`;
+                const firstResultWithUrl = result.find(r => r.url && r.url.startsWith('http'));
+                if (firstResultWithUrl) {
+                     recommendationHTML += `<div class="mt-4 text-center"><a href="${firstResultWithUrl.url}" target="_blank" class="inline-block bg-white text-green-700 font-bold py-2 px-4 rounded-lg border-2 border-green-600 hover:bg-green-600 hover:text-white transition-all duration-300">関のレビュー記事で詳しく見る！</a></div>`;
+                }
+            } else {
+                 recommendationHTML = `<strong class="text-xl text-red-600">${result.name}</strong><br>${finalReason || result.reason}`;
+                 if(result.url && result.url.startsWith('http')) {
+                     recommendationHTML += `<div class="mt-4 text-center"><a href="${result.url}" target="_blank" class="inline-block bg-white text-green-700 font-bold py-2 px-4 rounded-lg border-2 border-green-600 hover:bg-green-600 hover:text-white transition-all duration-300">関のレビュー記事で詳しく見る！</a></div>`;
+                }
+            }
+            
+            document.getElementById('report-recommendation').innerHTML = recommendationHTML;
             document.getElementById('report-output').style.display = 'block';
+            document.getElementById('report-output').scrollIntoView({ behavior: 'smooth' });
         });
     }
 
     // Initial load
-    updateView();
+    updateView(window.location.hash);
 });
 </script>
 
