@@ -81,7 +81,7 @@
     <div class="container mx-auto px-4 py-8 max-w-4xl">
         
         <header class="text-center mb-10">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">“後悔しない”ゴルフ練習場選び</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">“後悔しない”<br class="sm:hidden">ゴルフ練習場選び</h1>
             <p class="text-green-700 font-semibold">インタラクティブ・チェックガイド</p>
         </header>
 
@@ -345,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let result = null;
             let finalReason = "";
 
-            // ▼▼▼【重要】ここに診断ロジックの本体を復元しました ▼▼▼
             if (goal === 'data') {
                 if (budget === 'cost' && priority === 'focus') { result = db.ksp_hikone; finalReason = "理由：30分660円からのお得な打ち放題があり「コスト優先」に応えつつ、全打席トップトレーサー無料で「データ計測」が可能。各自が黙々と練習する雰囲気も「集中したい」あなたにピッタリです！"; }
                 else if (budget === 'cost' && priority === 'community') { result = db['365_hikone']; finalReason = "理由：「コスト優先」で「アットホーム」さを求めるならここ。店員さんも優しく、工房にはいつも多くの人が相談に訪れるなど、データ計測以外の人との繋がりも期待できます。"; }
