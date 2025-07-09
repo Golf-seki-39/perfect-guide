@@ -21,9 +21,24 @@
             color: #64748b; /* slate-500 */
             cursor: pointer;
         }
-        .tab-link.active, .tab-link:hover {
+        /* アクティブなタブのスタイル */
+        .tab-link.active {
             border-bottom-color: #16a34a; /* green-600 */
             color: #1e293b; /* slate-800 */
+        }
+        /* PCなどマウス操作ができるデバイスでのみホバー効果を適用 */
+        @media (hover: hover) {
+            .tab-link:hover {
+                border-bottom-color: #16a34a; /* green-600 */
+                color: #1e293b; /* slate-800 */
+            }
+        }
+        /* スマホ向けのスタイル調整 */
+        @media (max-width: 640px) {
+            .tab-link {
+                font-size: 1.1rem; /* 文字を少し大きくする */
+                padding: 1rem 0.5rem; /* 左右の余白を調整 */
+            }
         }
         .content-section {
             display: none;
