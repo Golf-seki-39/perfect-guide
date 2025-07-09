@@ -13,31 +13,33 @@
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #f1f5f9; /* slate-100 */
         }
+        /* 新しいボタンスタイルのタブ */
         .tab-link {
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-            padding: 1rem;
+            background-color: #ffffff;
+            color: #334155; /* slate-700 */
             font-weight: 500;
-            color: #64748b; /* slate-500 */
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            transition: all 0.2s ease-in-out;
             cursor: pointer;
+            border: 1px solid #e2e8f0; /* slate-200 */
         }
-        /* アクティブなタブのスタイル */
+        /* 選択中のボタンのスタイル */
         .tab-link.active {
-            border-bottom-color: #16a34a; /* green-600 */
-            color: #1e293b; /* slate-800 */
+            background-color: #16a34a; /* green-600 */
+            color: #ffffff;
+            border-color: #16a34a;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transform: translateY(-2px);
         }
         /* PCなどマウス操作ができるデバイスでのみホバー効果を適用 */
         @media (hover: hover) {
-            .tab-link:hover {
-                border-bottom-color: #16a34a; /* green-600 */
-                color: #1e293b; /* slate-800 */
-            }
-        }
-        /* スマホ向けのスタイル調整 */
-        @media (max-width: 640px) {
-            .tab-link {
-                font-size: 1.1rem; /* 文字を少し大きくする */
-                padding: 1rem 0.5rem; /* 左右の余白を調整 */
+            .tab-link:not(.active):hover {
+                background-color: #f8fafc; /* slate-50 */
+                border-color: #cbd5e1; /* slate-300 */
+                transform: translateY(-2px);
             }
         }
         .content-section {
@@ -81,15 +83,14 @@
             <p class="text-green-700 font-semibold">インタラクティブ・チェックガイド</p>
         </header>
 
-        <nav class="mb-8 border-b border-slate-200">
-            <ul class="flex justify-center flex-wrap -mb-px">
+        <nav class="mb-8">
+            <ul class="grid grid-cols-2 gap-4">
                 <li><a data-tab="welcome" class="tab-link active">はじめに</a></li>
                 <li><a data-tab="hp-check" class="tab-link">HPチェック</a></li>
                 <li><a data-tab="skill-check" class="tab-link">習熟度別シート</a></li>
                 <li><a data-tab="my-report" class="tab-link">マイカルテ診断</a></li>
             </ul>
         </nav>
-
         <main>
             <section id="welcome" class="content-section active">
                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
