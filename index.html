@@ -15,6 +15,7 @@
         }
         /* 新しいボタンスタイルのタブ */
         .tab-link {
+            /* 見た目の設定 */
             background-color: #ffffff;
             color: #334155; /* slate-700 */
             font-weight: 500;
@@ -25,6 +26,12 @@
             transition: all 0.2s ease-in-out;
             cursor: pointer;
             border: 1px solid #e2e8f0; /* slate-200 */
+            
+            /* ▼▼▼ サイズ統一と中央揃えのための設定 ▼▼▼ */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
         /* 選択中のボタンのスタイル */
         .tab-link.active {
@@ -84,7 +91,7 @@
         </header>
 
         <nav class="mb-8">
-            <ul class="grid grid-cols-2 gap-4">
+            <ul class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <li><a data-tab="welcome" class="tab-link active">はじめに</a></li>
                 <li><a data-tab="hp-check" class="tab-link">HPチェック</a></li>
                 <li><a data-tab="skill-check" class="tab-link">習熟度別シート</a></li>
