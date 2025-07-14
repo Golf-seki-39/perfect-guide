@@ -49,20 +49,31 @@
         #bottomNav {
             transform: translateY(100%);
             transition: transform 0.3s ease-in-out;
+            /* iOSで背景が透けるブラー効果 */
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         #bottomNav.visible {
             transform: translateY(0);
         }
         .bottom-tab-link {
-            padding: 0.5rem;
-            color: #475569; /* slate-600 */
-            font-size: 0.75rem; /* 12px */
-            border-radius: 0.5rem;
-            transition: background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #64748b; /* slate-500 for inactive */
+            padding: 0.25rem;
+            width: 72px; /* ボタンの幅を固定 */
+            height: 56px; /* ボタンの高さを固定 */
+            transition: color 0.2s ease-in-out;
         }
         .bottom-tab-link.active {
-            color: #16a34a; /* green-600 */
-            font-weight: 700;
+            color: #16a34a; /* green-600 for active */
+        }
+        .bottom-tab-link > span {
+            font-size: 0.7rem; /* 11.2px */
+            margin-top: 2px;
         }
 
         /* --- 既存スタイル --- */
@@ -110,136 +121,65 @@
                     <p>さあ、上のタブから各項目を探求し、あなたにとって最高の練習環境を見つけ出す旅を始めましょう！</p>
                 </div>
             </section>
-
             <section id="hp-check" class="content-section">
                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-800 mb-4">練習場ホームページ：これだけは絶対チェック！超厳選リスト</h2>
                     <p class="text-right -mt-4 mb-6"><a href="https://note.com/seki_golf_39" target="_blank" class="text-sm text-amber-600 font-semibold underline hover:text-amber-700">by 関＠初心者向けゴルフ施設レビュアー</a></p>
                     <p class="mb-6 text-slate-600">練習場のHP、情報が多すぎて迷いますよね？まずはこの「2大カテゴリー」に絞ってチェックすれば、大きな失敗は防げます！</p>
-                    
                     <div class="mb-8">
                         <h3 class="text-xl font-semibold text-green-700 mb-3 border-b-2 border-green-200 pb-2">カテゴリー1：【お財布事情】気になる料金まわり</h3>
-                        <div class="space-y-3 text-sm">
-                            <p><strong>□ 基本のボール代は？</strong> (1球いくら？ 打ち放題はある？)</p>
-                            <p><strong>□ 入場料はかかる？</strong></p>
-                            <p><strong>□ お得な割引はある？</strong> (女性割引、特定のカード割引、時間帯割引など)</p>
-                            <p><strong>□ 支払い方法は？</strong> (現金？ カード？ プリペイドカードの初回金額は？)</p>
-                            <p class="text-xs text-slate-500 italic mt-2">→ HPの「料金案内」「ご利用システム」などを重点的にチェック！</p>
-                        </div>
+                        <div class="space-y-3 text-sm"><p><strong>□ 基本のボール代は？</strong> (1球いくら？ 打ち放題はある？)</p><p><strong>□ 入場料はかかる？</strong></p><p><strong>□ お得な割引はある？</strong> (女性割引、特定のカード割引、時間帯割引など)</p><p><strong>□ 支払い方法は？</strong> (現金？ カード？ プリペイドカードの初回金額は？)</p><p class="text-xs text-slate-500 italic mt-2">→ HPの「料金案内」「ご利用システム」などを重点的にチェック！</p></div>
                     </div>
-
                     <div>
                         <h3 class="text-xl font-semibold text-green-700 mb-3 border-b-2 border-green-200 pb-2">カテゴリー2：【練習できること】やりたい練習ができるか</h3>
-                         <div class="space-y-3 text-sm">
-                            <p><strong>□ アプローチ練習</strong>はできそう？ (専用エリア、バンカーの有無など)</p>
-                            <p><strong>□ パター練習</strong>はできそう？ (専用グリーン、マットの有無など)</p>
-                            <p><strong>□ 噂の「弾道測定器」はある？</strong> (トップトレーサーなど。無料か有料かもチェック！)</p>
-                            <p><strong>□ 初心者でも安心な打席</strong>はありそう？ (仕切りがある、専用レーンなど)</p>
-                            <p class="text-xs text-slate-500 italic mt-2">→ HPの「施設案内」「フロアガイド」などで設備をチェック！</p>
-                        </div>
+                        <div class="space-y-3 text-sm"><p><strong>□ アプローチ練習</strong>はできそう？ (専用エリア、バンカーの有無など)</p><p><strong>□ パター練習</strong>はできそう？ (専用グリーン、マットの有無など)</p><p><strong>□ 噂の「弾道測定器」はある？</strong> (トップトレーサーなど。無料か有料かもチェック！)</p><p><strong>□ 初心者でも安心な打席</strong>はありそう？ (仕切りがある、専用レーンなど)</p><p class="text-xs text-slate-500 italic mt-2">→ HPの「施設案内」「フロアガイド」などで設備をチェック！</p></div>
                     </div>
                 </div>
             </section>
-
             <section id="skill-check" class="content-section">
                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-800 mb-4">習熟度別チェックシート</h2>
                     <p class="text-right -mt-4 mb-6"><a href="https://note.com/seki_golf_39" target="_blank" class="text-sm text-amber-600 font-semibold underline hover:text-amber-700">by 関＠初心者向けゴルフ施設レビュアー</a></p>
                     <p class="mb-6 text-slate-600">あなたのゴルフのレベルに合わせて、最適なチェックシートを選んで活用しよう！</p>
-                    
                     <div class="space-y-6">
                         <div>
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類①：【超入門！】はじめての練習場選び 超シンプルチェックシート</h3>
                             <p class="text-sm text-slate-500 mb-3">これから初めて練習場に行く、数回しか行ったことがない方向け。不安をなくし、「まずは行ってみる！」を応援します。</p>
-                            <div class="bg-slate-50 p-4 rounded-md text-sm">
-                                <p class="checklist-item"><span class="checklist-icon">⛳️</span>練習場名：</p>
-                                <p class="checklist-item"><span class="checklist-icon">📍</span>場所はどこらへん？（家から何分くらい？）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">⏰</span>今日（または行きたい日）やってる？（営業時間OK？）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">👋</span>手ぶらでも大丈夫そう？（クラブとか借りれる？）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">💰</span>料金はどんな感じ？（HPで見て、1球いくら位？ なんとなくでOK！）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">😊</span>雰囲気はどうかな？（HPの写真を見て、初心者でも優しそう？）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">🌟</span>「行ってみたい！」ワクワク度（5段階）：</p>
-                            </div>
+                            <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">⛳️</span>練習場名：</p><p class="checklist-item"><span class="checklist-icon">📍</span>場所はどこらへん？（家から何分くらい？）：</p><p class="checklist-item"><span class="checklist-icon">⏰</span>今日（または行きたい日）やってる？（営業時間OK？）：</p><p class="checklist-item"><span class="checklist-icon">👋</span>手ぶらでも大丈夫そう？（クラブとか借りれる？）：</p><p class="checklist-item"><span class="checklist-icon">💰</span>料金はどんな感じ？（HPで見て、1球いくら位？ なんとなくでOK！）：</p><p class="checklist-item"><span class="checklist-icon">😊</span>雰囲気はどうかな？（HPの写真を見て、初心者でも優しそう？）：</p><p class="checklist-item"><span class="checklist-icon">🌟</span>「行ってみたい！」ワクワク度（5段階）：</p></div>
                         </div>
-                        
                         <div>
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類②：【脱・初心者！】“自分に合う”を見つける 練習場比較チェックシート</h3>
-                             <p class="text-sm text-slate-500 mb-3">何回か練習場に行ったことがあり、もっと自分に合う場所を探したい方向け。複数の練習場を比較検討するのに最適です。</p>
-                             <div class="bg-slate-50 p-4 rounded-md text-sm">
-                                <p class="checklist-item"><span class="checklist-icon">🎯</span>今日の練習目的／この練習場に期待すること：</p>
-                                <p class="checklist-item"><span class="checklist-icon">🚗</span>アクセス＆基本情報（家からの所要時間、駐車場、営業時間）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">💸</span>料金チェック！（100球打った時の総額、打ち放題プラン、使える割引）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">🏌️‍♂️</span>練習設備チェック！（打席の雰囲気、弾道測定器、アプローチ、パター、初心者への配慮）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">☕️</span>その他（レンタル、休憩スペース、スタッフの雰囲気、一番のウリは？）：</p>
-                                <p class="checklist-item"><span class="checklist-icon">🔁</span>総合的な「また来たい度」（5段階）：</p>
-                            </div>
+                            <p class="text-sm text-slate-500 mb-3">何回か練習場に行ったことがあり、もっと自分に合う場所を探したい方向け。複数の練習場を比較検討するのに最適です。</p>
+                            <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">🎯</span>今日の練習目的／この練習場に期待すること：</p><p class="checklist-item"><span class="checklist-icon">🚗</span>アクセス＆基本情報（家からの所要時間、駐車場、営業時間）：</p><p class="checklist-item"><span class="checklist-icon">💸</span>料金チェック！（100球打った時の総額、打ち放題プラン、使える割引）：</p><p class="checklist-item"><span class="checklist-icon">🏌️‍♂️</span>練習設備チェック！（打席の雰囲気、弾道測定器、アプローチ、パター、初心者への配慮）：</p><p class="checklist-item"><span class="checklist-icon">☕️</span>その他（レンタル、休憩スペース、スタッフの雰囲気、一番のウリは？）：</p><p class="checklist-item"><span class="checklist-icon">🔁</span>総合的な「また来たい度」（5段階）：</p></div>
                         </div>
-                        
                         <div>
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類③：【目指せ上級者！】練習環境を徹底分析 本格活用チェックシート</h3>
                             <p class="text-sm text-slate-500 mb-3">本気で上達したい、練習環境を戦略的に選びたい方向け。各練習場の長所・短所を詳細に分析します。</p>
-                            <div class="bg-slate-50 p-4 rounded-md text-sm">
-                               <p class="checklist-item"><span class="checklist-icon">📈</span>料金体系分析（マイ練習パターンでのコストシミュレーション）</p>
-                               <p class="checklist-item"><span class="checklist-icon">🎯</span>ドライビングレンジ環境評価（打席、マット、ティー、ボール、ターゲット、弾道測定器の詳細）</p>
-                               <p class="checklist-item"><span class="checklist-icon">⛳️</span>ショートゲーム練習環境評価（アプローチ練習場、パターグリーンの詳細）</p>
-                               <p class="checklist-item"><span class="checklist-icon">🏢</span>その他施設・サービス評価（クラブハウス、ショップ、工房、レッスン、スタッフ対応など）</p>
-                               <p class="checklist-item"><span class="checklist-icon">🧠</span>総合評価と戦略的活用プラン（この練習場の強み・弱み、自分のスキル向上への活用法）</p>
-                            </div>
+                            <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">📈</span>料金体系分析（マイ練習パターンでのコストシミュレーション）</p><p class="checklist-item"><span class="checklist-icon">🎯</span>ドライビングレンジ環境評価（打席、マット、ティー、ボール、ターゲット、弾道測定器の詳細）</p><p class="checklist-item"><span class="checklist-icon">⛳️</span>ショートゲーム練習環境評価（アプローチ練習場、パターグリーンの詳細）</p><p class="checklist-item"><span class="checklist-icon">🏢</span>その他施設・サービス評価（クラブハウス、ショップ、工房、レッスン、スタッフ対応など）</p><p class="checklist-item"><span class="checklist-icon">🧠</span>総合評価と戦略的活用プラン（この練習場の強み・弱み、自分のスキル向上への活用法）</p></div>
                         </div>
                     </div>
                 </div>
             </section>
-
             <section id="my-report" class="content-section">
                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-800 mb-4">あなただけの「練習場選びカルテ」を作成しよう！</h2>
                     <p class="text-right -mt-4 mb-6"><a href="https://note.com/seki_golf_39" target="_blank" class="text-sm text-amber-600 font-semibold underline hover:text-amber-700">by 関＠初心者向けゴルフ施設レビュアー</a></p>
                     <p class="mb-6 text-slate-600">下の3つの質問に答えて、あなたにとって「理想の練習場」の条件を明確にしてみましょう。最後に生成される「あなたの練習場カルテ」をスクリーンショットすれば、今後の練習場選びの強力な「羅針盤」になります！</p>
-                    
                     <div class="space-y-8">
                         <div>
-                            <label for="goal" class="block mb-2 text-lg font-medium text-slate-900">
-                                <span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q1</span>今のあなたの「一番の練習目的」は何ですか？
-                            </label>
-                            <select id="goal" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3">
-                                <option selected value="">選択してください</option>
-                                <option value="data">データを見ながら効率よく練習したい</option>
-                                <option value="approach">アプローチやバンカーをとことん練習したい</option>
-                                <option value="putter">パターを本気で上達させたい</option>
-                                <option value="swing">とにかくたくさん打ち込みたい（スイング固め）</option>
-                                <option value="trial">いろいろなクラブを試したい</option>
-                            </select>
+                            <label for="goal" class="block mb-2 text-lg font-medium text-slate-900"><span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q1</span>今のあなたの「一番の練習目的」は何ですか？</label>
+                            <select id="goal" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3"><option selected value="">選択してください</option><option value="data">データを見ながら効率よく練習したい</option><option value="approach">アプローチやバンカーをとことん練習したい</option><option value="putter">パターを本気で上達させたい</option><option value="swing">とにかくたくさん打ち込みたい（スイング固め）</option><option value="trial">いろいろなクラブを試したい</option></select>
                         </div>
                         <div>
-                            <label for="budget" class="block mb-2 text-lg font-medium text-slate-900">
-                                 <span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q2</span>練習1回あたりの「理想の予算感」は？
-                            </label>
-                            <select id="budget" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3">
-                                <option selected value="">選択してください</option>
-                                <option value="cost">コスト最優先！できるだけ安く！</option>
-                                <option value="balance">安さも質も！コスパ重視</option>
-                                <option value="quality">質のためなら、多少高くても気にしない</option>
-                            </select>
+                            <label for="budget" class="block mb-2 text-lg font-medium text-slate-900"><span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q2</span>練習1回あたりの「理想の予算感」は？</label>
+                            <select id="budget" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3"><option selected value="">選択してください</option><option value="cost">コスト最優先！できるだけ安く！</option><option value="balance">安さも質も！コスパ重視</option><option value="quality">質のためなら、多少高くても気にしない</option></select>
                         </div>
                         <div>
-                            <label for="priority" class="block mb-2 text-lg font-medium text-slate-900">
-                                <span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q3</span>練習場選びで「絶対に譲れない」雰囲気は？
-                            </label>
-                            <select id="priority" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3">
-                                <option selected value="">選択してください</option>
-                                <option value="focus">自分のペースで黙々と集中したい</option>
-                                <option value="community">アットホームな雰囲気・人との繋がり</option>
-                                <option value="comfort">設備の綺麗さ・快適さ</option>
-                            </select>
+                            <label for="priority" class="block mb-2 text-lg font-medium text-slate-900"><span class="bg-green-600 text-white rounded-full px-3 py-1 mr-2">Q3</span>練習場選びで「絶対に譲れない」雰囲気は？</label>
+                            <select id="priority" class="bg-slate-50 border border-slate-300 text-slate-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-3"><option selected value="">選択してください</option><option value="focus">自分のペースで黙々と集中したい</option><option value="community">アットホームな雰囲気・人との繋がり</option><option value="comfort">設備の綺麗さ・快適さ</option></select>
                         </div>
                     </div>
-
-                    <div class="mt-10 text-center">
-                        <button id="generate-report" type="button" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-lg px-8 py-4 glow-button">
-                            カルテを生成する！
-                        </button>
-                    </div>
-
+                    <div class="mt-10 text-center"><button id="generate-report" type="button" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-lg px-8 py-4 glow-button">カルテを生成する！</button></div>
                     <div id="report-output" class="mt-10 bg-amber-50 p-6 rounded-lg border-2 border-dashed border-amber-300" style="display: none;">
                         <h3 class="text-2xl font-bold text-amber-800 mb-4 text-center">📝 あなただけの練習場選びカルテ</h3>
                         <div class="space-y-4 text-slate-800">
@@ -253,19 +193,38 @@
                     </div>
                 </div>
             </section>
-
         </main>
         <footer class="text-center mt-8 text-xs text-slate-400">
             <p>Created by <a href="https://note.com/seki_golf_39" target="_blank" class="underline hover:text-green-700"><strong>関＠初心者向けゴルフ施設レビュアー</strong></a> & Gemini</p>
         </footer>
     </div>
 
-    <nav id="bottomNav" class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_5px_rgba(0,0,0,0.05)] p-2 z-40">
-        <ul class="flex justify-around items-center max-w-4xl mx-auto">
-            <li><a data-tab="welcome" class="bottom-tab-link active">はじめに</a></li>
-            <li><a data-tab="hp-check" class="bottom-tab-link">HPチェック</a></li>
-            <li><a data-tab="skill-check" class="bottom-tab-link">習熟度別シート</a></li>
-            <li><a data-tab="my-report" class="bottom-tab-link">マイカルテ診断</a></li>
+    <nav id="bottomNav" class="fixed bottom-0 left-0 right-0 border-t border-slate-200 z-40">
+        <ul class="flex justify-around items-center max-w-4xl mx-auto h-16">
+            <li>
+                <a data-tab="welcome" class="bottom-tab-link active">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <span>はじめに</span>
+                </a>
+            </li>
+            <li>
+                <a data-tab="hp-check" class="bottom-tab-link">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                    <span>HPチェック</span>
+                </a>
+            </li>
+            <li>
+                <a data-tab="skill-check" class="bottom-tab-link">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                    <span>習熟度別</span>
+                </a>
+            </li>
+            <li>
+                <a data-tab="my-report" class="bottom-tab-link">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                    <span>マイカルテ</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
