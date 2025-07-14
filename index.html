@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth; /* ページ内リンクのスムーズスクロール */
+        }
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #f1f5f9; /* slate-100 */
@@ -49,7 +52,6 @@
         #bottomNav {
             transform: translateY(100%);
             transition: transform 0.3s ease-in-out;
-            /* iOSで背景が透けるブラー効果 */
             background-color: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -127,7 +129,6 @@
                     <h2 class="text-2xl font-bold text-slate-800 mb-4">練習場ホームページ：これだけは絶対チェック！超厳選リスト</h2>
                     <p class="text-right -mt-4 mb-6"><a href="https://note.com/seki_golf_39" target="_blank" class="text-sm text-amber-600 font-semibold underline hover:text-amber-700">by 関＠初心者向けゴルフ施設レビュアー</a></p>
                     <p class="mb-6 text-slate-600">練習場のHP、情報が多すぎて迷いますよね？まずはこの「2大カテゴリー」に絞ってチェックすれば、大きな失敗は防げます！</p>
-                    
                     <div class="mb-8">
                         <h3 class="text-xl font-semibold text-green-700 mb-3 border-b-2 border-green-200 pb-2">カテゴリー1：【お財布事情】気になる料金まわり</h3>
                         <div class="space-y-3 text-sm">
@@ -138,7 +139,6 @@
                             <p class="text-xs text-slate-500 italic mt-2">→ HPの「料金案内」「ご利用システム」などを重点的にチェック！</p>
                         </div>
                     </div>
-
                     <div>
                         <h3 class="text-xl font-semibold text-green-700 mb-3 border-b-2 border-green-200 pb-2">カテゴリー2：【練習できること】やりたい練習ができるか</h3>
                          <div class="space-y-3 text-sm">
@@ -151,23 +151,33 @@
                     </div>
                 </div>
             </section>
+
             <section id="skill-check" class="content-section">
                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-800 mb-4">習熟度別チェックシート</h2>
                     <p class="text-right -mt-4 mb-6"><a href="https://note.com/seki_golf_39" target="_blank" class="text-sm text-amber-600 font-semibold underline hover:text-amber-700">by 関＠初心者向けゴルフ施設レビュアー</a></p>
                     <p class="mb-6 text-slate-600">あなたのゴルフのレベルに合わせて、最適なチェックシートを選んで活用しよう！</p>
-                    <div class="space-y-6">
-                        <div>
+                    
+                    <div class="grid grid-cols-3 gap-2 md:gap-4 mb-8">
+                        <a href="#skill-1" class="bg-green-100 text-green-800 text-center text-sm md:text-base font-bold p-2 rounded-lg hover:bg-green-200 transition">種類①<br>超入門</a>
+                        <a href="#skill-2" class="bg-green-100 text-green-800 text-center text-sm md:text-base font-bold p-2 rounded-lg hover:bg-green-200 transition">種類②<br>脱・初心者</a>
+                        <a href="#skill-3" class="bg-green-100 text-green-800 text-center text-sm md:text-base font-bold p-2 rounded-lg hover:bg-green-200 transition">種類③<br>上級者</a>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div id="skill-1">
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類①：【超入門！】はじめての練習場選び 超シンプルチェックシート</h3>
                             <p class="text-sm text-slate-500 mb-3">これから初めて練習場に行く、数回しか行ったことがない方向け。不安をなくし、「まずは行ってみる！」を応援します。</p>
                             <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">⛳️</span>練習場名：</p><p class="checklist-item"><span class="checklist-icon">📍</span>場所はどこらへん？（家から何分くらい？）：</p><p class="checklist-item"><span class="checklist-icon">⏰</span>今日（または行きたい日）やってる？（営業時間OK？）：</p><p class="checklist-item"><span class="checklist-icon">👋</span>手ぶらでも大丈夫そう？（クラブとか借りれる？）：</p><p class="checklist-item"><span class="checklist-icon">💰</span>料金はどんな感じ？（HPで見て、1球いくら位？ なんとなくでOK！）：</p><p class="checklist-item"><span class="checklist-icon">😊</span>雰囲気はどうかな？（HPの写真を見て、初心者でも優しそう？）：</p><p class="checklist-item"><span class="checklist-icon">🌟</span>「行ってみたい！」ワクワク度（5段階）：</p></div>
                         </div>
-                        <div>
+                        
+                        <div id="skill-2">
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類②：【脱・初心者！】“自分に合う”を見つける 練習場比較チェックシート</h3>
-                            <p class="text-sm text-slate-500 mb-3">何回か練習場に行ったことがあり、もっと自分に合う場所を探したい方向け。複数の練習場を比較検討するのに最適です。</p>
-                            <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">🎯</span>今日の練習目的／この練習場に期待すること：</p><p class="checklist-item"><span class="checklist-icon">🚗</span>アクセス＆基本情報（家からの所要時間、駐車場、営業時間）：</p><p class="checklist-item"><span class="checklist-icon">💸</span>料金チェック！（100球打った時の総額、打ち放題プラン、使える割引）：</p><p class="checklist-item"><span class="checklist-icon">🏌️‍♂️</span>練習設備チェック！（打席の雰囲気、弾道測定器、アプローチ、パター、初心者への配慮）：</p><p class="checklist-item"><span class="checklist-icon">☕️</span>その他（レンタル、休憩スペース、スタッフの雰囲気、一番のウリは？）：</p><p class="checklist-item"><span class="checklist-icon">🔁</span>総合的な「また来たい度」（5段階）：</p></div>
+                             <p class="text-sm text-slate-500 mb-3">何回か練習場に行ったことがあり、もっと自分に合う場所を探したい方向け。複数の練習場を比較検討するのに最適です。</p>
+                             <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">🎯</span>今日の練習目的／この練習場に期待すること：</p><p class="checklist-item"><span class="checklist-icon">🚗</span>アクセス＆基本情報（家からの所要時間、駐車場、営業時間）：</p><p class="checklist-item"><span class="checklist-icon">💸</span>料金チェック！（100球打った時の総額、打ち放題プラン、使える割引）：</p><p class="checklist-item"><span class="checklist-icon">🏌️‍♂️</span>練習設備チェック！（打席の雰囲気、弾道測定器、アプローチ、パター、初心者への配慮）：</p><p class="checklist-item"><span class="checklist-icon">☕️</span>その他（レンタル、休憩スペース、スタッフの雰囲気、一番のウリは？）：</p><p class="checklist-item"><span class="checklist-icon">🔁</span>総合的な「また来たい度」（5段階）：</p></div>
                         </div>
-                        <div>
+                        
+                        <div id="skill-3">
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類③：【目指せ上級者！】練習環境を徹底分析 本格活用チェックシート</h3>
                             <p class="text-sm text-slate-500 mb-3">本気で上達したい、練習環境を戦略的に選びたい方向け。各練習場の長所・短所を詳細に分析します。</p>
                             <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">📈</span>料金体系分析（マイ練習パターンでのコストシミュレーション）</p><p class="checklist-item"><span class="checklist-icon">🎯</span>ドライビングレンジ環境評価（打席、マット、ティー、ボール、ターゲット、弾道測定器の詳細）</p><p class="checklist-item"><span class="checklist-icon">⛳️</span>ショートゲーム練習環境評価（アプローチ練習場、パターグリーンの詳細）</p><p class="checklist-item"><span class="checklist-icon">🏢</span>その他施設・サービス評価（クラブハウス、ショップ、工房、レッスン、スタッフ対応など）</p><p class="checklist-item"><span class="checklist-icon">🧠</span>総合評価と戦略的活用プラン（この練習場の強み・弱み、自分のスキル向上への活用法）</p></div>
@@ -269,7 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             
             if (link.classList.contains('active')) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // ページ内リンクでなければトップへスクロール
+                if (!link.getAttribute('href') || !link.getAttribute('href').startsWith('#')) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
                 return;
             }
 
