@@ -77,12 +77,32 @@
             font-size: 0.7rem; /* 11.2px */
             margin-top: 2px;
         }
+        /* 入力フォーム用のスタイル */
+        .input-form-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .input-form-item:last-child {
+            border-bottom: none;
+        }
+        .input-form-item label {
+            font-weight: 600;
+            color: #1e293b; /* slate-800 */
+        }
+        .input-form-item input[type="text"], .input-form-item textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #cbd5e1; /* slate-300 */
+            border-radius: 0.375rem;
+            font-size: 1rem;
+        }
 
         /* --- 既存スタイル --- */
         .content-section { display: none; }
         .content-section.active { display: block; }
-        .checklist-item { display: flex; align-items: start; padding: 8px 0; border-bottom: 1px solid #e2e8f0; }
-        .checklist-item:last-child { border-bottom: none; }
         .checklist-icon { margin-right: 12px; color: #16a34a; }
         .glow-button { transition: all 0.3s ease; box-shadow: 0 0 5px rgba(22, 163, 74, 0), 0 0 10px rgba(22, 163, 74, 0); }
         .glow-button:hover { box-shadow: 0 0 15px rgba(22, 163, 74, 0.6), 0 0 25px rgba(22, 163, 74, 0.4); transform: translateY(-2px); }
@@ -168,24 +188,44 @@
                         <div id="skill-1">
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類①：【超入門！】はじめての練習場選び 超シンプルチェックシート</h3>
                             <p class="text-sm text-slate-500 mb-3">これから初めて練習場に行く、数回しか行ったことがない方向け。不安をなくし、「まずは行ってみる！」を応援します。</p>
-                            <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">⛳️</span>練習場名：</p><p class="checklist-item"><span class="checklist-icon">📍</span>場所はどこらへん？（家から何分くらい？）：</p><p class="checklist-item"><span class="checklist-icon">⏰</span>今日（または行きたい日）やってる？（営業時間OK？）：</p><p class="checklist-item"><span class="checklist-icon">👋</span>手ぶらでも大丈夫そう？（クラブとか借りれる？）：</p><p class="checklist-item"><span class="checklist-icon">💰</span>料金はどんな感じ？（HPで見て、1球いくら位？ なんとなくでOK！）：</p><p class="checklist-item"><span class="checklist-icon">😊</span>雰囲気はどうかな？（HPの写真を見て、初心者でも優しそう？）：</p><p class="checklist-item"><span class="checklist-icon">🌟</span>「行ってみたい！」ワクワク度（5段階）：</p></div>
+                            <div class="bg-slate-50 p-4 rounded-md">
+                                <div class="input-form-item"><label for="s1_1">⛳️ 練習場名</label><input type="text" id="s1_1"></div>
+                                <div class="input-form-item"><label for="s1_2">📍 場所はどこらへん？（家から何分くらい？）</label><input type="text" id="s1_2"></div>
+                                <div class="input-form-item"><label for="s1_3">⏰ 今日（または行きたい日）やってる？（営業時間OK？）</label><input type="text" id="s1_3"></div>
+                                <div class="input-form-item"><label for="s1_4">👋 手ぶらでも大丈夫そう？（クラブとか借りれる？）</label><input type="text" id="s1_4"></div>
+                                <div class="input-form-item"><label for="s1_5">💰 料金はどんな感じ？（HPで見て、1球いくら位？ なんとなくでOK！）</label><input type="text" id="s1_5"></div>
+                                <div class="input-form-item"><label for="s1_6">😊 雰囲気はどうかな？（HPの写真を見て、初心者でも優しそう？）</label><input type="text" id="s1_6"></div>
+                                <div class="input-form-item"><label for="s1_7">🌟 「行ってみたい！」ワクワク度（5段階）</label><input type="text" id="s1_7"></div>
+                            </div>
                         </div>
                         
                         <div id="skill-2">
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類②：【脱・初心者！】“自分に合う”を見つける 練習場比較チェックシート</h3>
                              <p class="text-sm text-slate-500 mb-3">何回か練習場に行ったことがあり、もっと自分に合う場所を探したい方向け。複数の練習場を比較検討するのに最適です。</p>
-                             <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">🎯</span>今日の練習目的／この練習場に期待すること：</p><p class="checklist-item"><span class="checklist-icon">🚗</span>アクセス＆基本情報（家からの所yoyaku時間、駐車場、営業時間）：</p><p class="checklist-item"><span class="checklist-icon">💸</span>料金チェック！（100球打った時の総額、打ち放題プラン、使える割引）：</p><p class="checklist-item"><span class="checklist-icon">🏌️‍♂️</span>練習設備チェック！（打席の雰囲気、弾道測定器、アプローチ、パター、初心者への配慮）：</p><p class="checklist-item"><span class="checklist-icon">☕️</span>その他（レンタル、休憩スペース、スタッフの雰囲気、一番のウリは？）：</p><p class="checklist-item"><span class="checklist-icon">🔁</span>総合的な「また来たい度」（5段階）：</p></div>
+                             <div class="bg-slate-50 p-4 rounded-md">
+                                <div class="input-form-item"><label for="s2_1">🎯 今日の練習目的／この練習場に期待すること</label><textarea id="s2_1" rows="2"></textarea></div>
+                                <div class="input-form-item"><label for="s2_2">🚗 アクセス＆基本情報（家からの所要時間、駐車場、営業時間）</label><textarea id="s2_2" rows="2"></textarea></div>
+                                <div class="input-form-item"><label for="s2_3">💸 料金チェック！（100球打った時の総額、打ち放題プラン、使える割引）</label><textarea id="s2_3" rows="2"></textarea></div>
+                                <div class="input-form-item"><label for="s2_4">🏌️‍♂️ 練習設備チェック！（打席の雰囲気、弾道測定器、アプローチ、パター、初心者への配慮）</label><textarea id="s2_4" rows="3"></textarea></div>
+                                <div class="input-form-item"><label for="s2_5">☕️ その他（レンタル、休憩スペース、スタッフの雰囲気、一番のウリは？）</label><textarea id="s2_5" rows="2"></textarea></div>
+                                <div class="input-form-item"><label for="s2_6">🔁 総合的な「また来たい度」（5段階）</label><input type="text" id="s2_6"></div>
+                             </div>
                         </div>
                         
                         <div id="skill-3">
                             <h3 class="text-xl font-semibold text-green-700 mb-2">種類③：【目指せ上級者！】練習環境を徹底分析 本格活用チェックシート</h3>
                             <p class="text-sm text-slate-500 mb-3">本気で上達したい、練習環境を戦略的に選びたい方向け。各練習場の長所・短所を詳細に分析します。</p>
-                            <div class="bg-slate-50 p-4 rounded-md text-sm"><p class="checklist-item"><span class="checklist-icon">📈</span>料金体系分析（マイ練習パターンでのコストシミュレーション）</p><p class="checklist-item"><span class="checklist-icon">🎯</span>ドライビングレンジ環境評価（打席、マット、ティー、ボール、ターゲット、弾道測定器の詳細）</p><p class="checklist-item"><span class="checklist-icon">⛳️</span>ショートゲーム練習環境評価（アプローチ練習場、パターグリーンの詳細）</p><p class="checklist-item"><span class="checklist-icon">🏢</span>その他施設・サービス評価（クラブハウス、ショップ、工房、レッスン、スタッフ対応など）</p><p class="checklist-item"><span class="checklist-icon">🧠</span>総合評価と戦略的活用プラン（この練習場の強み・弱み、自分のスキル向上への活用法）</p></div>
+                            <div class="bg-slate-50 p-4 rounded-md">
+                                <div class="input-form-item"><label for="s3_1">📈 料金体系分析（マイ練習パターンでのコストシミュレーション）</label><textarea id="s3_1" rows="2"></textarea></div>
+                                <div class="input-form-item"><label for="s3_2">🎯 ドライビングレンジ環境評価（打席、マット、ティー、ボール、ターゲット、弾道測定器の詳細）</label><textarea id="s3_2" rows="3"></textarea></div>
+                                <div class="input-form-item"><label for="s3_3">⛳️ ショートゲーム練習環境評価（アプローチ練習場、パターグリーンの詳細）</label><textarea id="s3_3" rows="3"></textarea></div>
+                                <div class="input-form-item"><label for="s3_4">🏢 その他施設・サービス評価（クラブハウス、ショップ、工房、レッスン、スタッフ対応など）</label><textarea id="s3_4" rows="3"></textarea></div>
+                                <div class="input-form-item"><label for="s3_5">🧠 総合評価と戦略的活用プラン（この練習場の強み・弱み、自分のスキル向上への活用法）</label><textarea id="s3_5" rows="3"></textarea></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-
             <section id="my-report" class="content-section">
                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm">
                     <h2 class="text-2xl font-bold text-slate-800 mb-4">あなただけの「練習場選びカルテ」を作成しよう！</h2>
