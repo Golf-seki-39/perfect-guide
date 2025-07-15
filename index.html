@@ -129,12 +129,6 @@
                             <p class="text-xs text-slate-500 italic mt-2">→ HPの「施設案内」「フロアガイド」などで設備をチェック！</p>
                         </div>
                     </div>
-                    <div class="mt-8 pt-4 border-t">
-                        <h3 class="text-xl font-semibold text-slate-800 mb-3">みんなのレビュー</h3>
-                        <div class="text-slate-600 text-sm">
-                            <p>（ここにレビューが表示されます）</p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -309,7 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
         bottomNav.classList.toggle('visible', window.scrollY > 200);
     });
 
-    // --- LocalStorage Logic ---
     checklistInputs.forEach(input => {
         const savedValue = localStorage.getItem(input.id);
         if (savedValue) {
@@ -322,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateView();
 
-    // --- Diagnosis Logic ---
     const db = {
         ksp_hikone: { name: "KSP彦根", url: "https://note.com/seki_golf_39/n/nb5ea1ecefd55" },
         '365_hikone': { name: "365ゴルフクラブ 彦根", url: null },
@@ -426,9 +418,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                  (diagnosisLogic[goal] && diagnosisLogic[goal]['default'] && diagnosisLogic[goal]['default']['default']);
 
             const recommendationContainer = document.getElementById('report-recommendation');
-            recommendationContainer.innerHTML = '';
+            recommendationContainer.innerHTML = ''; 
 
             if (recommendation && recommendation.result) {
+                const formBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSddpgYmksMMN3HvdueS7bvvEW8qfCsZzdZl636lJXzjIE1u2A/viewform?usp=pp_url';
+                const formEntryId = 'entry.1382914903';
+
                 recommendation.result.forEach(location => {
                     const card = document.createElement('div');
                     card.className = 'bg-white p-4 rounded-lg border border-amber-300 shadow-sm';
@@ -440,8 +435,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(location.url) {
                         content += `<div class="mt-4 text-center"><a href="${location.url}" target="_blank" class="inline-block bg-white text-green-700 font-bold py-2 px-4 rounded-lg border-2 border-green-600 hover:bg-green-600 hover:text-white transition-all duration-300">関のレビュー記事で詳しく見る！</a></div>`;
                     }
-                    // ▼▼▼ レビュー投稿ボタンを追加 ▼▼▼
-                    content += `<div class="mt-3 text-center"><a href="https://forms.gle/ZrBTcHKioEZUtsx16" target="_blank" class="inline-block text-sm text-slate-600 font-semibold py-2 px-4 rounded-lg hover:bg-slate-100 transition-all duration-300">この練習場のレビューを投稿する</a></div>`;
+                    
+                    const prefilledUrl = `${formBaseUrl}&${formEntryId}=${encodeURIComponent(location.name)}`;
+                    content += `<div class="mt-3 text-center"><a href="${prefilledUrl}" target="_blank" class="inline-block text-sm text-slate-600 font-semibold py-2 px-4 rounded-lg hover:bg-slate-100 transition-all duration-300">この練習場のレビューを投稿する</a></div>`;
                     
                     card.innerHTML = content;
                     recommendationContainer.appendChild(card);
