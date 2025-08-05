@@ -324,6 +324,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const diagnosisLogic = {
         data:{cost:{focus:{result:[db.ksp_hikone],reason:"30分660円からのお得な打ち放題があり「コスト優先」に応えつつ、全打席トップトレーサー無料で「データ計測」が可能。各自が黙々と練習する雰囲気も「集中したい」あなたにピッタリです！"},community:{result:[db["365_hikone"]],reason:"「コスト優先」で「アットホーム」さを求めるならここ。店員さんも優しく、工房にはいつも多くの人が相談に訪れるなど、データ計測以外の人との繋がりも期待できます。"},comfort:{result:[db["365_hikone"],db.ksp_hikone],reason:"安さも綺麗さもならこの2つ。365彦根はオープンしたてで綺麗、KSP彦根もレンジ周りは非常に清潔感があります。どちらもトップトレーサー完備です！"}},balance:{focus:{result:[db["365_nagahama"],db["365_hikone"],db.ksp_hikone],reason:"「コスパ」と「質」、そして「集中できる環境」を求めるならこの3つ。どの練習場も集中しやすく、料金と設備のバランスが最高レベルです。"},community:{result:[db["365_hikone"]],reason:"「コスパ」と「アットホームさ」のバランスが良いのがここ。最新のデータ計測を楽しみつつ、親切な店員さんや工房に集まる人たちとの交流も魅力です。"},comfort:{result:[db["365_hikone"],db.ksp_hikone],reason:"安さと質の高さを両立し、かつ綺麗な環境で練習したいあなたへ。どちらも清潔感があり、トップトレーサーを快適に利用できます。"}},quality:{focus:{result:[db["365_nagahama"],db.ksp_hopegaoka],reason:"「質」を最優先するならこの2つ。365ながはまはショートコースも完備。KSP希望ヶ丘は料金が少し高めですが、その分、質の高い環境で黙々とデータと向き合えます。"},community:{result:[db["365_nagahama"]],reason:"「質」と「雰囲気」の両方を最高レベルで求めるならここ。最高の練習環境でスキルを磨きつつ、活気のある練習場で新しい出会いも期待できます。"},comfort:{result:[db["365_nagahama"],db["365_hikone"]],reason:"「質」と「快適さ」を極めるならこの2つ。365ながはまは全てが揃い、365彦根は有料の屋内パター練習場など、綺麗な環境で最高の練習ができます。"}}},approach:{cost:{focus:{result:[db.greenpia],reason:"「コスト最優先」でアプローチ練習ならここ。利用時間は短いですが、非常に安い料金で利用できます。平日など空いている時間なら集中できるはず。"},community:{result:[db.sakura],reason:"安くてアットホームな雰囲気でアプローチ練習がしたいならここが一番！親切な店員さんや他の利用者との交流も魅力です。"},comfort:{result:[db.sakura],reason:"料金の安さを考えると、ここのアプローチ練習場は十分に快適と言えるでしょう。金額と設備のバランスが良い選択です。"}},balance:{focus:{result:[db.sakura],reason:"「コスパ」と「質」を両立し、自分のペースで集中したいならここ。実践的なライから練習でき、上達に繋がります。"},community:{result:[db.sakura],reason:"料金と設備のバランスが良く、かつアットホームな雰囲気でアプローチ練習がしたいなら、ここが最適解です！"},comfort:{result:[db.riverside],reason:"「コスパ」も「快適さ」もならここ。年会費2,000円を払えば、300円で快適な会員限定アプローチ練習場が利用できます。"}},quality:{focus:{result:[db.riverside],reason:"「質」を求めるあなたには、会員しか入れないここのアプローチ練習場がおすすめ。人が少ない環境で最高の集中力を発揮できます。"},community:{result:[db.riverside],reason:"ハイクオリティな会員限定アプローチ練習場がありつつ、休憩スペースでは他のゴルファーとも交流できる、バランスの取れた練習場です。"},comfort:{result:[db["365_nagahama"]],reason:"「質」と「快適さ」を最高レベルで求めるならここ。併設のショートコースでの実践的なアプローチ練習は、まさに最高の環境です。"}}},putter:{cost:{default:{result:[db.riverside],reason:"「コスト最優先」でパターを練習したいなら、無料でこのクオリティのパター練習場を開放しているここが、まさに聖地です！"}},balance:{focus:{result:[db.ksp_hopegaoka],reason:"「コスパ」「質」「集中」を求めるならここ。レンジ利用者は、広くて質の良い屋内パター練習場が無料で使え、自分の練習に没頭できます。"},community:{result:[db.riverside],reason:"「コスパ」と「アットホームさ」のバランスが最も良いのがここ。無料パター練習場でコストを抑えつつ、人の温かみも感じられます。"},comfort:{result:[db.ksp_hikone],reason:"レンジ利用が前提ですが、トップトレーサーを楽しんだ後に、無料で使える綺麗なパター練習マットで調整、という流れは非常に「コスパ」が高いです。"}},quality:{focus:{result:[db["365_nagahama"]],reason:"「質」を最優先するなら、ここのショートコースのグリーンで実践的なパッティングを行うのが最強の選択肢です。"},community:{result:[db["365_nagahama"]],reason:"「質」と「雰囲気」の両方を満たすならここ。最高の練習環境でスキルを磨きつつ、活気のある練習場で新しい出会いも期待できます。"},comfort:{result:[db["365_hikone"]],reason:"「質」と「快適さ」を極めるなら、ここの有料屋内パター練習場がベスト。天候に左右されず、綺麗なプライベート空間で最高の練習ができます。"}}},swing:{cost:{focus:{result:[db.greenpia],reason:"「コスト最優先」で「集中したい」なら、割引を駆使すれば驚異的な安さでガンガン打ち込めます。平日など空いている時間を狙いましょう。"},community:{result:[db.sakura],reason:"「コスト最優先」で「アットホーム」な雰囲気、特に女性ならここの打ち放題が圧倒的におすすめです！"},comfort:{result:[db["365_hikone"]],reason:"最安クラスではありませんが、オープンしたてで非常に綺麗な環境で、コストを抑えつつ気持ちよく打ち込みたいならここがベストです。"}},balance:{focus:{result:[db.ksp_hikone],reason:"安くて集中できる環境で打ち込みたいならここ。トップトレーサーでデータを見ながらの打ち込みは、ただ打つ以上の価値があります。"},community:{result:[db.sakura],reason:"料金と雰囲気のバランスを考えるなら、やはりここ。人の繋がりを感じながら、楽しく打ち込めます。"},comfort:{result:[db["365_hikone"]],reason:"「コスパ」も「綺麗さ」も、ならここ。新しい施設で気持ちよく、そしてお得に打ち込めます。"}},quality:{focus:{result:[db.ksp_hopegaoka],reason:"「質」を重視して集中したいならここ。料金は高めですが、打席待ちもなく、黙々と自分のスイングと向き合える環境です。"},community:{result:[db["365_hikone"]],reason:"質の高い練習環境と、アットホームな雰囲気を両立したいあなたへ。親切な店員さんや工房に集まる人たちとの交流も魅力です。"},comfort:{result:[db["365_nagahama"]],reason:"最高の「質」と「快適さ」で打ち込みたいならここ。ショートコース、トップトレーサー、試打と、全てが揃っています。"}}},trial:{default:{default:{result:[db["365_nagahama"]],reason:"クラブを試したいなら、ゴルフパートナー併設で<strong>無料試打</strong>ができるここが唯一無二の選択肢です！トップトレーサーのデータを見ながら、あなたの予算感や求める雰囲気に合わせて、最高の1本を見つけてください！"}}}};
 
+    // --- ▼▼▼ ここから修正 ▼▼▼ ---
+    // Googleフォームの情報を共通の定数として定義
+    const formBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSddpgYmksMMN3HvdueS7bvvEW8qfCsZzdZl636lJXzjIE1u2A/viewform?usp=pp_url';
+    const formEntryId = 'entry.1382914903';
+
     function createLocationCard(location) {
         const features = [
             location.hasTracer ? '📡 弾道測定器' : '',
@@ -333,9 +338,16 @@ document.addEventListener('DOMContentLoaded', () => {
         ].filter(Boolean).join(' / ');
 
         let buttonsHTML = '';
+        // 「レビュー記事を見る」ボタン
         if (location.url) {
-            buttonsHTML += `<div class="mt-4"><a href="${location.url}" target="_blank" class="inline-block bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition-all duration-300">関のレビュー記事で詳しく見る！</a></div>`;
+            buttonsHTML += `<div class="mt-4 text-center"><a href="${location.url}" target="_blank" class="inline-block bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition-all duration-300">関のレビュー記事で詳しく見る！</a></div>`;
         }
+        
+        // 「レビューを投稿する」ボタン
+        const prefilledUrl = `${formBaseUrl}&${formEntryId}=${encodeURIComponent(location.name)}`;
+        const marginTopClass = location.url ? 'mt-2' : 'mt-4'; // レビュー記事ボタンがある場合はマージンを少し詰める
+        buttonsHTML += `<div class="${marginTopClass} text-center"><a href="${prefilledUrl}" target="_blank" class="inline-block text-sm text-slate-600 font-semibold py-2 px-4 rounded-lg hover:bg-slate-100 transition-all duration-300">この練習場のレビューを投稿する</a></div>`;
+
         return `
             <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm" data-location-key="${location.key}">
                 <h3 class="text-xl font-bold text-slate-800">${location.name}</h3>
@@ -344,6 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
     }
+    // --- ▲▲▲ ここまで修正 ▲▲▲ ---
 
     function renderLocationList() {
         if (!locationListContainer) return;
@@ -511,9 +524,6 @@ document.addEventListener('DOMContentLoaded', () => {
             recommendationContainer.innerHTML = '';
 
             if (recommendation && recommendation.result) {
-                const formBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSddpgYmksMMN3HvdueS7bvvEW8qfCsZzdZl636lJXzjIE1u2A/viewform?usp=pp_url';
-                const formEntryId = 'entry.1382914903';
-
                 recommendation.result.forEach(location => {
                     const card = document.createElement('div');
                     card.className = 'bg-white p-4 rounded-lg border border-amber-300 shadow-sm';
